@@ -5,6 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.session.web.http.CookieSerializer;
 import org.springframework.session.web.http.DefaultCookieSerializer;
 
+/**
+ *@Author: lingview
+ *@Date: 2025/10/22 09:10:24
+ *@Description: Session配置
+ *@Version: 1.0
+ */
 @Configuration
 public class SessionConfig {
 

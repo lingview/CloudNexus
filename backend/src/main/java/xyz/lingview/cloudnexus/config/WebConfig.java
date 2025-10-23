@@ -12,6 +12,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import xyz.lingview.cloudnexus.interceptor.UserPermissionInterceptor;
 import xyz.lingview.cloudnexus.security.SessionAuthFilter;
 
+/**
+ *@Author: lingview
+ *@Date: 2025/10/22 09:10:24
+ *@Description: 接口配置
+ *@Version: 1.0
+ */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 

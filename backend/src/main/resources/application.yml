@@ -104,7 +104,7 @@ mybatis:
   config-location: classpath:mybatis-config.xml
 
 server:
-  port: 2222
+  port: 2543
   servlet:
     context-path: /
   tomcat:

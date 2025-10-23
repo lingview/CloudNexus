@@ -49,7 +49,8 @@ public class SessionAuthFilter implements Filter {
             "/api/frontendgetmenus",
             "/api/site/**",
             "/api/article/**",
-            "/v3/api-docs/**"
+            "/v3/api-docs/**",
+            "/api/addkvm"
     ));
 
     @Override

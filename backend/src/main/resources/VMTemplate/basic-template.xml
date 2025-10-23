@@ -1,0 +1,62 @@
+<domain type='kvm'>
+  <name>{{vmName}}</name>
+  <uuid>{{uuid}}</uuid>
+  <memory unit='KiB'>{{memoryKB}}</memory>
+  <currentMemory unit='KiB'>{{memoryKB}}</currentMemory>
+  <vcpu placement='static'>{{vcpus}}</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-i440fx-2.9'>hvm</type>
+    <boot dev='cdrom'/>
+    <boot dev='hd'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+  </features>
+  <cpu mode='host-model' check='partial'/>
+  <clock offset='utc'/>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <!-- 系统磁盘 -->
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2'/>
+      <source file='{{diskPath}}'/>
+      <target dev='vda' bus='virtio'/>
+    </disk>
+    <!-- ISO镜像 -->
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <source file='{{isoPath}}'/>
+      <target dev='hdc' bus='ide'/>
+      <readonly/>
+    </disk>
+    <controller type='usb' index='0' model='ich9-ehci1'/>
+    <controller type='pci' index='0' model='pci-root'/>
+    <!-- 网络接口 -->
+    <interface type='network'>
+      <source network='{{networkType}}'/>
+      <model type='virtio'/>
+    </interface>
+    <!-- SPICE图形界面 -->
+    <graphics type='spice' autoport='yes' listen='0.0.0.0'>
+      <listen type='address' address='0.0.0.0'/>
+      <image compression='auto_glz'/>
+      <jpeg compression='auto'/>
+      <zlib compression='auto'/>
+      <playback compression='on'/>
+      <streaming mode='filter'/>
+    </graphics>
+    <!-- SPICE通道 -->
+    <channel type='spicevmc'>
+      <target type='virtio' name='com.redhat.spice.0'/>
+    </channel>
+    <video>
+      <model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1' primary='yes'/>
+    </video>
+    <memballoon model='virtio'/>
+  </devices>
+</domain>
